@@ -4,19 +4,15 @@
 |--------------------------------------------------------------------------
 | DATABASE CONFIGURATION
 |--------------------------------------------------------------------------
-|
-| Replace these values with the database credentials provided by
-| your hosting provider.
-|
 */
 
-$db_host = "localhost";
+$db_host = "fdb1029.awardspace.net";
 
-$db_name = "business_website";
+$db_name = "4771289_fbia";
 
-$db_user = "YOUR_DATABASE_USERNAME";
+$db_user = "4771289_fbia";
 
-$db_pass = "YOUR_DATABASE_PASSWORD";
+$db_pass = "HoLy-343";
 
 
 /*
