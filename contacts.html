@@ -784,15 +784,6 @@
 
 <script>
 
-/*
-    Temporary front-end form handler.
-
-    Later this form will connect to:
-    api/contact.php
-
-    and store inquiries in MySQL.
-*/
-
 const contactForm =
     document.getElementById("contactForm");
 
@@ -802,18 +793,74 @@ const formMessage =
 
 if (contactForm) {
 
-    contactForm.addEventListener("submit", function(event) {
+    contactForm.addEventListener(
+        "submit",
+        async function(event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        formMessage.textContent =
-            "Thank you. Your inquiry has been received.";
+            formMessage.className =
+                "form-message";
 
-        formMessage.classList.add("success");
+            formMessage.textContent =
+                "Sending your inquiry...";
 
-        contactForm.reset();
+            formMessage.style.display =
+                "block";
 
-    });
+
+            const formData =
+                new FormData(contactForm);
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "api/contact.php",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (result.success) {
+
+                    formMessage.className =
+                        "form-message success";
+
+                    formMessage.textContent =
+                        result.message;
+
+                    contactForm.reset();
+
+                } else {
+
+                    formMessage.className =
+                        "form-message error";
+
+                    formMessage.textContent =
+                        result.message;
+
+                }
+
+            } catch (error) {
+
+                formMessage.className =
+                    "form-message error";
+
+                formMessage.textContent =
+                    "Something went wrong. Please try again.";
+
+            }
+
+        }
+    );
 
 }
 
