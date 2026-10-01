@@ -2954,3 +2954,8 @@ p {
     }
 
 }
+.form-message.error {
+    display: block;
+    background: #fbecec;
+    color: #a52b2b;
+}
